@@ -2,18 +2,18 @@
 .Stack 100H
 .Data
     endl DB 10, 13, 'Chuoi ban nhap la', 10, 13, '$'
-    str DB 21, 20 dup('$')   ; Increased the size by 1 to accommodate '$' at the end
-    loichao DB 10, 13, 'Moi ban nhap chuoi: $' ; Adjusted to remove extra CR, LF
+    str DB 21, 20 dup('$')  
+    loichao DB 10, 13, 'Moi ban nhap chuoi: $'
 .Code
 MAIN PROC
     MOV AX, @Data
     MOV DS, AX
     
-    MOV AH, 9
+    MOV AH, 9        ; function to print the loichao out the screen
     LEA DX, loichao
     INT 21H         
     
-    MOV AH, 0Ah     ; Function 0Ah - Buffered Input
+    MOV AH, 10     ; Function 10 - Buffered Input
     LEA DX, str     ; DX points to the buffer for input
     INT 21H    
     
